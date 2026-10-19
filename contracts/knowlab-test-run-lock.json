@@ -14,6 +14,10 @@
     "test-run-result.schema.json": {
       "path": "contracts/knowbot-test-run/v1/test-run-result.schema.json",
       "sha256": "64408a2c6f730732635cdb1e538602f16b12d51616f4df9e074ef6c3dad55c2c"
+    },
+    "test-run-case-outputs.schema.json": {
+      "path": "contracts/knowbot-test-run/v1/test-run-case-outputs.schema.json",
+      "sha256": "f853ebd101392a31be59c0b6fd8d441ebbbf7b9fa82088af884294bc1aeb599b"
     }
   }
 }
