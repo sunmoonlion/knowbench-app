@@ -19,6 +19,14 @@
       "path": "contracts/knowbot-data/v1/data-list-result.schema.json",
       "sha256": "77391f6d9f00e3186c8449f7f1e216cd1cf63d8c6e996b5e09ccdf20e4e86bd9"
     },
+    "data-quotes-request.schema.json": {
+      "path": "contracts/knowbot-data/v1/data-quotes-request.schema.json",
+      "sha256": "02398a9e767a1678335adf04b983d606d154bc9991ab93eac30872296fa4926a"
+    },
+    "data-quotes-result.schema.json": {
+      "path": "contracts/knowbot-data/v1/data-quotes-result.schema.json",
+      "sha256": "6ccea3e0571346b3c3b88bedd97b65a8aab7ec15c8f4514141b54bc28781526c"
+    },
     "data-read-request.schema.json": {
       "path": "contracts/knowbot-data/v1/data-read-request.schema.json",
       "sha256": "d2cd59be6fbbbd97b5214ea79a79066c2245ebac06599411fe63afb5ac1b6274"
