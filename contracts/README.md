@@ -40,6 +40,21 @@ test `tests/test_knowbot_test_run_lock.py` checks every pinned digest against a
 sibling `knowlab-app` checkout and validates a sample request and the results
 the workbench produces against the provider schemas.
 
+## Knowbot incubation (knowlab)
+
+`knowlab-incubation-lock.json` pins the `knowbot-incubation/v1` contract that
+the workbench implements as a runtime for one AI round of incubation (drafting
+or revising an author's workdraft; 专家孵化方案 §8, decisions ⑮⑯; service
+identity `knowbench:incubate`, callers limited to knowlab, routes
+`/api/internal/v1/knowbot-runtime/incubations`: submit, read, cancel). The
+source of truth is `knowlab-app/contracts/knowbot-incubation/v1/`. The round
+runs on the author's account, computer and model key, in the fixed project
+「孵化」 under the chosen workspace root, with the built-in incubation method
+(`packs.INCUBATE`, not listed among the experts). The backend test
+`tests/test_knowbot_incubation_lock.py` checks every pinned digest against a
+sibling `knowlab-app` checkout and validates a sample request and the results
+the workbench produces against the provider schemas.
+
 ## Removed on 2026-10-28 (decisions ⑰)
 
 - `knowlab-knowbot-data-lock.json` (`knowbot-data/v1`: reading the user's data

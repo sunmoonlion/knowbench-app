@@ -1,0 +1,15 @@
+{
+  "provider": "knowlab-app",
+  "contract": "knowbot-incubation",
+  "major_version": 1,
+  "schemas": {
+    "incubation-request.schema.json": {
+      "path": "contracts/knowbot-incubation/v1/incubation-request.schema.json",
+      "sha256": "e5edd7142d210d1c4c520a93bbaec87415bc2f9b38531be52d7bdea2747b0353"
+    },
+    "incubation-result.schema.json": {
+      "path": "contracts/knowbot-incubation/v1/incubation-result.schema.json",
+      "sha256": "029a4404b4042be562fcbae352bc6401f4c7e488e0a17c9ff13224e571918060"
+    }
+  }
+}
