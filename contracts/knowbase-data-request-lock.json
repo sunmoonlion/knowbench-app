@@ -1,0 +1,7 @@
+{
+  "provider": "knowbase-app",
+  "contract": "data-request",
+  "major_version": 1,
+  "schema": "contracts/data-request/v1/data-request.schema.json",
+  "sha256": "0d88fa592fe910db0a14286a98a3ef20728eee6b72a7c41b936971087da45ad4"
+}
