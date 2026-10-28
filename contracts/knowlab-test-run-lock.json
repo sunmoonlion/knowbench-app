@@ -5,15 +5,15 @@
   "schemas": {
     "test-run-answers.schema.json": {
       "path": "contracts/knowbot-test-run/v1/test-run-answers.schema.json",
-      "sha256": "42bd9120de65eab2cb3f98203f666a82f8328e1f4a5e150ffa658cc1c5a29efd"
+      "sha256": "31b23135b2c8d608ca0f32c2d36cccf2353d0ab99c04e572fc739e33101214f2"
     },
     "test-run-request.schema.json": {
       "path": "contracts/knowbot-test-run/v1/test-run-request.schema.json",
-      "sha256": "2734363b0d6964aab89db1d84b09f663eadccb097e12d4b42e3fe032752dd629"
+      "sha256": "d8080d05bb99a04e9458833cfc07f0117d711ce1c3af191aac38b86e263f33de"
     },
     "test-run-result.schema.json": {
       "path": "contracts/knowbot-test-run/v1/test-run-result.schema.json",
-      "sha256": "8e2172c97cfeab9bd3f506b6a5ffec896e5c47ed72a6450148d146d969ee1400"
+      "sha256": "8ffb7eb6d24bb6252a5a1cfb7243d798afa46cea9846840726e9d1f198701a2a"
     },
     "test-run-case-outputs.schema.json": {
       "path": "contracts/knowbot-test-run/v1/test-run-case-outputs.schema.json",
