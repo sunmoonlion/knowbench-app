@@ -12,15 +12,23 @@ upgrade. Generated or copied schemas must not become a second source of truth.
 
 ## Knowbot manifest (knowmart)
 
-`knowmart-knowbot-manifest-lock.json` pins the outer knowbot manifest that the
-workbench summons from knowmart (SDD 0027 P4, service identity
-`knowmart:summon`). The source of truth is
-`knowmart-app/contracts/knowbot/v1/`. The backend test
+`knowmart-knowbot-manifest-v2-lock.json` pins the outer knowbot manifest
+`knowbot-manifest/v2` that the workbench summons from knowmart (SDD 0027 P4,
+SDD 0043; service identity `knowmart:summon`). The source of truth is
+`knowmart-app/contracts/knowbot/v2/`. The backend test
 `tests/test_knowbot_contract_lock.py` checks the lock against a sibling
 `knowmart-app` checkout (or `KNOWMART_KNOWBOT_MANIFEST_SCHEMA_PATH`) and
 validates the workbench's sample manifest against the provider schema. The
 inner `pack` is the workbench's own expert-pack shape and is validated by the
-backend (`app/domain/workbench/knowbots.py`).
+backend (`app/domain/workbench/knowbots.py`). Only v2 is accepted (decisions ⑰,
+2026-10-28: no compatibility with v1).
+
+## Data request (knowbase)
+
+`knowbase-data-request-lock.json` pins `data-request/v1`, the description of one
+item of data that step 0 and `request_data` propose (SDD 0043, decisions ⑭).
+The source of truth is `knowbase-app/contracts/data-request/v1/`; the backend
+test `tests/test_knowbase_data_request_lock.py` checks the lock.
 
 ## Knowbot test runs (knowlab)
 
@@ -32,12 +40,11 @@ test `tests/test_knowbot_test_run_lock.py` checks every pinned digest against a
 sibling `knowlab-app` checkout and validates a sample request and the results
 the workbench produces against the provider schemas.
 
-## Knowbot data (knowlab)
+## Removed on 2026-10-28 (decisions ⑰)
 
-`knowlab-knowbot-data-lock.json` pins the `knowbot-data/v1` contract the
-workbench calls to read the user's own data bound to a knowbot (SDD 0027 §3.5,
-service identity `knowlab:read`, routes under `/api/internal/v1/knowlab`). The
-source of truth is `knowlab-app/contracts/knowbot-data/v1/`. The backend test
-`tests/test_knowbot_data_lock.py` checks every pinned digest against a sibling
-`knowlab-app` checkout and validates the requests the workbench sends against
-the provider schemas.
+- `knowlab-knowbot-data-lock.json` (`knowbot-data/v1`: reading the user's data
+  through knowlab with the service identity `knowlab:read`). The user's data is
+  read from knowbase `user-data/v2` with the task's run grant.
+- `knowmart-knowbot-manifest-lock.json` (manifest v1).
+- The request of `knowbot-test-run/v1` no longer carries the v1 test grant
+  `data_grant`; a case brings its test set in `data`.
