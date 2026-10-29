@@ -1,0 +1,13 @@
+{
+  "provider": "knowfeed-app",
+  "contract": "knowfeed-supply-status",
+  "major_version": 1,
+  "receiver_path": "/api/internal/v1/knowfeed/demand-status",
+  "relation": "supply-status",
+  "schemas": {
+    "demand-status.schema.json": {
+      "path": "contracts/supply-status/v1/demand-status.schema.json",
+      "sha256": "63d70a6b787388d0b8709d2c9db855179265dfec588a5dad4427060cf09af1eb"
+    }
+  }
+}

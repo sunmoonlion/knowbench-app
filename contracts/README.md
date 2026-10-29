@@ -53,7 +53,26 @@ runs on the author's account, computer and model key, in the fixed project
 (`packs.INCUBATE`, not listed among the experts). The backend test
 `tests/test_knowbot_incubation_lock.py` checks every pinned digest against a
 sibling `knowlab-app` checkout and validates a sample request and the results
-the workbench produces against the provider schemas.
+the workbench produces against the provider schemas. Since knowlab `625500a`
+(2026-10-29) each data format also carries `media_type`, the knowbase
+`description` dimensions and the ready `readings`, and a revise may carry the
+author's latest `test_report` (report only: no draft, outputs or test data);
+both go to the model as part of the round's material.
+
+## Demand status (knowfeed)
+
+`knowfeed-supply-status-lock.json` pins `knowfeed-supply-status/v1`, the
+notification knowfeed sends when a demand the workbench raised changes status
+(SDD 0045 §2.5). The source of truth is
+`knowfeed-app/contracts/supply-status/v1/`. The receiver is
+`POST /api/internal/v1/knowfeed/demand-status` (service relation
+`supply-status`, scope `knowbench:supply-status`, caller limited to knowfeed).
+A finished demand makes the waiting task re-check that demand at once and go
+on; the check still trusts what the demand reads by its id, and polling stays as
+the fallback. The backend test `tests/test_knowfeed_supply_status.py` checks the
+lock against a sibling `knowfeed-app` checkout (or
+`KNOWFEED_SUPPLY_STATUS_CONTRACT_DIR`) and that the backend model takes exactly
+the fields the schema lists.
 
 ## Removed on 2026-10-28 (decisions ⑰)
 
