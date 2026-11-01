@@ -38,7 +38,12 @@ workbench implements as a runtime (SDD 0027 §3.4, service identity
 source of truth is `knowlab-app/contracts/knowbot-test-run/v1/`. The backend
 test `tests/test_knowbot_test_run_lock.py` checks every pinned digest against a
 sibling `knowlab-app` checkout and validates a sample request and the results
-the workbench produces against the provider schemas.
+the workbench produces against the provider schemas. Since 2026-10-30 the
+contract also has `POST …/test-runs/{run_id}/cancel` (same schemas; answers
+`RunResultV1`): knowlab calls it when an author withdraws a delivery or a
+platform review fails. The workbench stops every running case task (the step on
+the author's computer is interrupted), hands back the grants those tasks pinned,
+records the run as `cancelled`, and answers the same on a repeat call.
 
 ## Knowbot incubation (knowlab)
 
@@ -73,6 +78,38 @@ the fallback. The backend test `tests/test_knowfeed_supply_status.py` checks the
 lock against a sibling `knowfeed-app` checkout (or
 `KNOWFEED_SUPPLY_STATUS_CONTRACT_DIR`) and that the backend model takes exactly
 the fields the schema lists.
+
+## Supply prematch (knowfeed)
+
+`knowfeed-supply-prematch-lock.json` pins `knowfeed-supply-prematch/v1`, the
+question the workbench asks knowfeed before the user confirms the data of a
+delegation (SDD 0043 §3.3 step 1, SDD 0045 §4): for each item to be fetched,
+can it be fetched, is the site still under review, which license tier the first
+channel gives, and how long the queue estimates. The source of truth is
+`knowfeed-app/contracts/supply-prematch/v1/`. The caller is the backend with the
+service relation `supply-demand` (scope `knowfeed:supply-demand`, the same as
+demands), `POST /api/internal/v1/supply/prematch`. The answer is shown on the
+confirmation panel (task page and board card; the whole ask is capped at 5
+seconds), kept with the task, and reused when the user confirms: each answer,
+with the description key that was asked, goes together with the workbench's
+acceptable conditions into the knowbase confirmation as
+`supply = {"conditions": {...}, "prematch": <answer>}` (no second ask at
+confirmation). When knowfeed is not configured, the supply switch is off or the
+call fails or is slow, the list is shown without estimates. The backend test `tests/test_knowfeed_supply_prematch.py`
+checks the lock against a sibling `knowfeed-app` checkout (or
+`KNOWFEED_SUPPLY_PREMATCH_CONTRACT_DIR`), that the backend models carry exactly
+the fields the schemas list, and that the request it builds validates against
+the provider schema (when `jsonschema` is installed).
+
+## Preferences written back to knowbase
+
+When the user swaps the copy knowbase picked for another candidate on the
+confirmation panel (SDD 0043 §3.5), the workbench writes the preference back
+with the user's own token (`PUT /api/internal/v2/user-data/preferences`, body
+`{consumer, key, material_ids}`). Convention: `consumer` is the expert without
+its version, `expert:<id>` (the resolution's consumer with `@<version>`
+dropped), so a preference keeps working when the expert publishes a new
+version. knowbase keys preferences by user × this consumer × description.
 
 ## Removed on 2026-10-28 (decisions ⑰)
 

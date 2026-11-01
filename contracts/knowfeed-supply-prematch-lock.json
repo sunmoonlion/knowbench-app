@@ -1,0 +1,17 @@
+{
+  "provider": "knowfeed-app",
+  "contract": "knowfeed-supply-prematch",
+  "major_version": 1,
+  "path": "/api/internal/v1/supply/prematch",
+  "relation": "supply-demand",
+  "schemas": {
+    "prematch-request.schema.json": {
+      "path": "contracts/supply-prematch/v1/prematch-request.schema.json",
+      "sha256": "8b8c5dc00d47fc068dca3161b4d907e56638fc0ef5552ff10cac5f0905bc340d"
+    },
+    "prematch-response.schema.json": {
+      "path": "contracts/supply-prematch/v1/prematch-response.schema.json",
+      "sha256": "766ebf8ca54708b07c282239f96812a7a613bfd7774dcd441047caf7c8b9c1ca"
+    }
+  }
+}
