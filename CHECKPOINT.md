@@ -68,3 +68,13 @@ Advisor 已按冻结方法计划执行并原子交付全部最终成果；返工
 开发分支同步后端 aeca77f / 前端 fb942ff；上游路由故障不再转成用户采单错误，页面保留采单并提示稍后再试。保留第二轨原有 resolution_changed 与 CAS 逻辑。切换账号的缓存清理改为旧页面卸载后执行。
 
 定向后端 recheck 5 passed，前端 panel/session 18 passed；前端 typecheck、后端 ruff/pyright 通过。发布使用独立 fix/recheck-contract 候选，不使用本开发分支；线上任务未动。
+
+
+## 2026-11-02 WP-10：接通受控动态作者测试
+
+钉后端 24b6415，先推子仓 GitHub。测试受理服务允许构造期显式注入动态联调能力，
+生产 bootstrap 保持默认关闭；受理/Conductor/Ledger/Runner/多成果回收复用现有链。
+实际引用目录在隔离数据库及脚本 AppServer 下跑两步/三步计划，未改写任务快照。
+新受理/旧固定测试/账房/成果回归 52 passed，ruff/pyright 通过；此前跨端快照相关
+111 passed。未重复后端全量，未调用真实模型/金融数据。细节及回退见后端 CHECKPOINT。
+此批只做开发，不替 qwen 发版，不影响独立 recheck 修复候选或本人暂停的业务验收。
