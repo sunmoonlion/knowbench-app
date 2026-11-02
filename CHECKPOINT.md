@@ -16,3 +16,14 @@
 上述发布候选保持原分支；从候选另建 feat/dynamic-methods，后端 cbb6cd40e93a3819cca2fb5839caa1df09d77441。新增方法目录 provider schema（dynamic-methods/v1），外层 knowmart v3 锁及孵化 v1 锁。方法目录独立于 ExpertPack.workflow，完整校验方法/依赖/必需成果/次数/权限；动态执行入口明确关闭，避免误走固定调度。前端未变。
 
 完整回归 1244 passed / 92 skipped，其后最终契约补充重跑受影响六文件 81 passed；最终全仓 ruff/pyright 通过，详细时点/命令见后端 CHECKPOINT.md。下一单元：版本化任务计划、确定性校验与事务接受；再接 Attempt/有效计划视图/UI，最后重新孵化作者确认的财务专家。无 Wind 调用、无部署、未修改保底专家或 qwen 发布分支。
+
+
+## 第二轨 WP-10 单元 2：计划保存与校验
+
+后端钉 6e54339d946d53b83f863d3863edf42c3d9221be，已先推 GitHub feat/dynamic-methods。本父仓只推进后端引用和检查点，前端与 provider schemas 未变；未更新任何发布源。
+
+新增任务计划模型、确定性校验及既有 Ledger 内的规划 Attempt/预算/事务接受。计划存 Artifact 版本，Task 指向确切已接受版，作者目录快照不变；并发接受幂等、取消不复活、输入验收版本核对、已开始前缀保护、失败计费/计轮次与文件冲突均有测试。迁移头 20261102_0035，仅新增可空正整数指针；有接受历史时禁止破坏性 downgrade。回退应用须保留扩展 schema。
+
+后端全量 1289 passed / 92 skipped，之后补测试的相关三文件最终 54 passed；ruff/pyright 通过。详情、命令和原始输出位置见后端 CHECKPOINT.md。动态专家仍不能运行，尚无新增前端入口。
+
+所有者确认方法独立版本、专家精确引用、任务动态组合，已记 sunmoonun b01e7f18 的 methods.md/decisions.md 与双轨 WP-10。新增单元 1a：先在 knowlab 做作者方法主档、输入槽与专家连接分离、版本引用/升级、三方契约及快照校验；再接动态 advisor/权限/视图/验收。当前目录只属于专家包，不可称为跨专家方法库。发版交 qwen，保底巨潮链和 Wind 3/5 限额不变。
