@@ -36,3 +36,14 @@
 完整后端 1344 passed / 92 skipped / 2 既有 collection warnings；全量后最后补的规划重试守卫，五文件最终 139 项通过；最终 ruff/pyright 通过。记录与复跑说明见后端 CHECKPOINT.md 和 docs/method-execution.md。无新增迁移、Wind 调用、线上任务/采单变更。
 
 规划复用 TurnDriver 端口，但 Advisor/Runner 真实入口及工具鉴权、页面、最终交付尚未整体接通；测试 Driver 是替身，v3 仍拒绝准入。尤其须补可信的每轮调用身份，覆盖 MCP conversation/market/NO_SCOPE 路径，不能把提示词允许工具当强制权限。下一段继续接线与完整生命周期测试。
+
+
+## 第二轨 WP-10 单元 3：执行循环、读取面与工具鉴权
+
+独立 feat/method-execution-view：后端 ee3c40c09d2cffa6ce37773411c5f610fe2a2138（包含第三段 fa31f31、第四段 4b94cdc），前端 06f90264ae060bf2de239211cbe4d5f0916631ef，子仓均已先推 GitHub。本父仓只钉开发成果，不动 qwen 的 release/recovery-methods、发布源或 Jenkins。
+
+Advisor 已按冻结方法计划执行并原子交付全部最终成果；返工显式 pin 失效走受限重规划。页面展示计划理由/版本及当前有效成果，保留历史但不混用；固定专家 HTTP 结构保持不变。MCP 按真实轮次、Runner 观察的工具事件、任务绑定与工具子集强制核验，覆盖跨任务/对话/市场/no-scope 和取消后绕过；原生审批不扩大作者 deny。规划带有界数据元信息，不带授权凭据/未读正文。
+
+后端全量 1396 passed / 92 skipped / 2 既有 warnings；全量后补充的上下文与 Runner→MCP→数据授权跨层测试，四文件最终 44 passed。前端完整 377 passed / 2 skipped，typecheck/lint/i18n/build 通过。后端 ruff/pyright 通过；固定 0.155.1 隔离协议探针通过，无真实模型/金融数据调用。命令和最初失败记录见子仓 CHECKPOINT 与 docs/method-execution.md。
+
+无新迁移，保留 0025/0035 历史保护；v3 外部准入仍关闭。agy 负责作者方法库内容/UI；下一步准备动态孵化测试的稳定断言和多成果回执契约，然后联合真实沙箱验收。Wind 仍 3/5、W0 未决，保底巨潮不改。
