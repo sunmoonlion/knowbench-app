@@ -27,3 +27,12 @@
 后端全量 1289 passed / 92 skipped，之后补测试的相关三文件最终 54 passed；ruff/pyright 通过。详情、命令和原始输出位置见后端 CHECKPOINT.md。动态专家仍不能运行，尚无新增前端入口。
 
 所有者确认方法独立版本、专家精确引用、任务动态组合，已记 sunmoonun b01e7f18 的 methods.md/decisions.md 与双轨 WP-10。新增单元 1a：先在 knowlab 做作者方法主档、输入槽与专家连接分离、版本引用/升级、三方契约及快照校验；再接动态 advisor/权限/视图/验收。当前目录只属于专家包，不可称为跨专家方法库。发版交 qwen，保底巨潮链和 Wind 3/5 限额不变。
+
+
+## 2026-11-02 #49 重新核对修复候选（fix/recheck-contract）
+
+从已发布父仓 2f08c699 分出，不混入后续动态执行功能。后端 6d2eba5 区分上游缺路由/协议/鉴权错误与真正的采单拒绝；前端 7685f28 显示数据服务问题并保留原采单。全量前端发现切换账号时清缓存早于卸载旧观察者的时序问题，同步修复，旧账号表单仍销毁。
+
+验证：后端全量首次 1296 passed / 106 skipped / 1 failed / 2 既有警告，唯一失败因隔离工位没检出 knowlab 契约文件；补齐 #49 的 knowlab-app f47f401 后，含该目录锁及完整 expert_data、knowbase_client 的 58 项通过。保留首次失败日志，不声称首跑全绿。后端 ruff/pyright 通过。前端全量 375 passed / 2 skipped、typecheck/lint/i18n（1073 键）/生产 build 通过；第一次构建 node_modules 指向工位外导致 Turbopack 拒绝，改为独立离线 frozen-lockfile 安装后构建通过，未更改构建配置。
+
+原始输出 /tmp/luna-recheck-bench-tests.log、/tmp/luna-recheck-bench-final-targeted.log、/tmp/luna-recheck-web-tests-final.log、/tmp/luna-recheck-web-build-final.log。迁移头仍 20261102_0035，无新增迁移。必须与补齐本人 refresh 路由的 knowbase 一起交 qwen 经现有 Jenkins 发布。用户暂停验收，未确认、续跑、重试或停止线上旧任务；Wind 无新增调用。
