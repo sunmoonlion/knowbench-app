@@ -1,0 +1,7 @@
+{
+  "provider": "knowlab-app",
+  "contract": "author-method",
+  "major_version": 1,
+  "schema": "contracts/author-method/v1/definition.schema.json",
+  "sha256": "ebd797488583f4826f816f205e1ee588957dd8086c56a4a2e6e35bc65c71312a"
+}
