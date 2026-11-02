@@ -61,3 +61,10 @@ Advisor 已按冻结方法计划执行并原子交付全部最终成果；返工
 后端全量 1396 passed / 92 skipped / 2 既有 warnings；全量后补充的上下文与 Runner→MCP→数据授权跨层测试，四文件最终 44 passed。前端完整 377 passed / 2 skipped，typecheck/lint/i18n/build 通过。后端 ruff/pyright 通过；固定 0.155.1 隔离协议探针通过，无真实模型/金融数据调用。命令和最初失败记录见子仓 CHECKPOINT 与 docs/method-execution.md。
 
 无新迁移，保留 0025/0035 历史保护；v3 外部准入仍关闭。agy 负责作者方法库内容/UI；下一步准备动态孵化测试的稳定断言和多成果回执契约，然后联合真实沙箱验收。Wind 仍 3/5、W0 未决，保底巨潮不改。
+
+
+## 2026-11-02 同步 #49 重新核对修复
+
+开发分支同步后端 aeca77f / 前端 fb942ff；上游路由故障不再转成用户采单错误，页面保留采单并提示稍后再试。保留第二轨原有 resolution_changed 与 CAS 逻辑。切换账号的缓存清理改为旧页面卸载后执行。
+
+定向后端 recheck 5 passed，前端 panel/session 18 passed；前端 typecheck、后端 ruff/pyright 通过。发布使用独立 fix/recheck-contract 候选，不使用本开发分支；线上任务未动。
