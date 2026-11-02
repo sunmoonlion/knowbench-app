@@ -113,3 +113,14 @@ Advisor 已按冻结方法计划执行并原子交付全部最终成果；返工
 在 Luna 与最新各 provider 并列后，验收/计算/目录/计划 234 passed（无跳过）；
 隔离数据库 method_acceptance 2 passed。新字段在旧运行器 extra=forbid 下明确拒绝，
 使用新规则前需要编译器和运行器共同升级。未导入 20 个合成方法为线上资产。
+
+## 2026-11-02 第二轨作者测试准入
+
+独立 feat/dynamic-author-intake，backend b86cdcdbd751ea75f6a94ed5396596f70b90d372
+已先推 GitHub。KNOWBOT_DYNAMIC_TEST_OWNERS 按精确 subject 开放动态孵化测试，
+默认关闭；HTTP 不能自选开关，商城 v3 仍关闭，旧固定专家兼容。
+正式 HTTP/动态回归 17 passed、固定/规划/MCP/多成果 52 passed、ruff/pyright 通过。
+隔离 DB 正式运行器接真实 Codex 0.155.1 / kimi-k3，两个合成文档场景完整执行
+与结果回收 2 passed；一条非法 JSON 规划被拒后重试成功。
+用的是探针连接转接，不是生产 relay/knowbase/Wind 端到端验收，详细边界见子仓
+CHECKPOINT 与总纲第二轨联调证据。当前 qwen 已交接候选 354e825 不移动。
