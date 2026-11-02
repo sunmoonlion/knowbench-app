@@ -137,3 +137,10 @@ backend e4d9aba72b4d16d320d3a0654c23cae0cba76894；web
 typecheck/lint/build 通过，后端 ruff/pyright 通过。没有新迁移。
 下一批若启用商城动态专家，须正式作者已接受、交付并能查到的版本，以及发布侧配置
 KNOWBOT_DYNAMIC_MARKET_OWNERS；不把候选 20 方法夹具导入生产，不改当前 qwen 候选。
+
+## 2026-11-03 WP-1 精度修复与工程参考题
+
+backend 更新至 5470a81（精确 Decimal 字面量、公式比较、无损输出与 13 道披露
+参考题）；web/admin 指针不变。相关回归 189 passed，无跳过；ruff/pyright 通过。
+公开原件参考仍待独立人工复核及作者接受，不宣称正式财务演示已通过。
+当前 qwen 故障补丁独立候选不移动，本父仓供后续第二轨整合，无迁移/新配置。
