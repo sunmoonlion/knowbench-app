@@ -1,5 +1,19 @@
 # 2026-11-02 采集交付失败与原任务恢复
 
+## 最新开发增量：补采并发提交（未发布）
+
+feat/method-execution-view 后端已推
+`2b894280ce2cb3f6882c5b954e58725b09735030`，前端保持 `06f9026`。
+提供方配套 knowbase-backend `971747286c2b2329c8738f5735e8d76321651cc9`：
+解析过期基版冲突明确返回，本地提采重读追加，拒重复编号和取消后迟到回包，
+作者测试原子编号，数据收尾锁序对齐。无新增协议字段/迁移；provider README 已说明
+409 语义。全量 **1411 passed / 92 skipped / 2 既有 warnings**、ruff/pyright 通过，
+日志 `/tmp/luna-proposal-race-full.txt`。详情和初次测试夹具修正记录见后端 CHECKPOINT。
+
+未覆盖远程回包丢失的自动恢复与本人确认/修改和新增请求的完整并发合并，不称全链路
+幂等通过。没有发布、改 sources 或动线上采单；qwen 的 release/recovery-methods
+仍为 2f08c6999feb03f3005393c81f430513ea197ad7。
+
 基线：已发布 #46，父仓 20427cc415c3e42e9d2bc1bcd82c14d95d72b41b。候选分支 fix/supply-delivery；发布交由 qwen，luna 继续开发，不触发 Jenkins。
 
 任务 9319ae09-c8b7-4c3b-844e-27306e9e98d8 已确认后遇到 knowfeed→knowbase 交付 422。后端已有 DataWaiter 查询兜底，缺的是准确展示与失败后的正常恢复入口：供应进度快照只保留公开描述/状态/原因/核对时间，不带 receipt；WAITING(DATA) 区分等数据服务和等本人处理；missing 可重新核对并转 pending，保持原任务与 needs，新轮确认使用独立幂等键，重复核对不换键，重复确认不重复派单。
