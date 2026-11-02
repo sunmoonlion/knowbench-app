@@ -151,3 +151,13 @@ backend 6ef1211；不把未核实的 waiting 自动记为缺数照做，要求�
 区分正文/页码/事实及 compute 的引用需求。52 项相关回归，另 1 项真实 HTTP/隔离 DB
 旧 waiting→拒绝推进→订正后派单测试通过，静态检查通过。旧任务与专家冻结判据不改。
 #58 独立故障候选已另建 fix/supply-confirmation-waiting，不夹带本分支第二轨增量。
+
+
+## 2026-11-03 第二轨证据与供应商回归
+
+钉后端c0486f9（已推GitHub/Gitee），只新增隔离测试，无生产逻辑或契约变化。
+动态选择→签名读数→compute记录→出处/公式/覆盖验收→真实临时Markdown→底稿/交回，
+五种坏产物在一次返工后停下；供应商查询确认前不下单、失败不静默重复查询。
+新增8通过、相关50通过（有重叠），ruff/pyright通过。
+Qwen正在发布的fix/supply-confirmation-waiting及fix/markdown-delivery指针不动；
+财务专家新版仍待发布后实测交付，未声称真实Wind或财务业务已验收。
