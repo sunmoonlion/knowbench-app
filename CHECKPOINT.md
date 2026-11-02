@@ -27,3 +27,12 @@
 后端全量 1289 passed / 92 skipped，之后补测试的相关三文件最终 54 passed；ruff/pyright 通过。详情、命令和原始输出位置见后端 CHECKPOINT.md。动态专家仍不能运行，尚无新增前端入口。
 
 所有者确认方法独立版本、专家精确引用、任务动态组合，已记 sunmoonun b01e7f18 的 methods.md/decisions.md 与双轨 WP-10。新增单元 1a：先在 knowlab 做作者方法主档、输入槽与专家连接分离、版本引用/升级、三方契约及快照校验；再接动态 advisor/权限/视图/验收。当前目录只属于专家包，不可称为跨专家方法库。发版交 qwen，保底巨潮链和 Wind 3/5 限额不变。
+
+
+## 第二轨 WP-10 单元 3：独立开发分支进度
+
+`feat/method-execution-view` 后端钉 `b6784a7493956d026e89377f8f91200f68349263`，已先推 GitHub。包含 `0e0917a` 的任务执行视图、输入/成果绑定与取消竞态修复，以及本段有界规划服务、父版本重试守卫和动态 covers 固定输入验收。前端、provider schema、发布源未改；`release/recovery-methods` 仍由 qwen 按合并单发布，本开发不增加发版单。
+
+完整后端 1344 passed / 92 skipped / 2 既有 collection warnings；全量后最后补的规划重试守卫，五文件最终 139 项通过；最终 ruff/pyright 通过。记录与复跑说明见后端 CHECKPOINT.md 和 docs/method-execution.md。无新增迁移、Wind 调用、线上任务/采单变更。
+
+规划复用 TurnDriver 端口，但 Advisor/Runner 真实入口及工具鉴权、页面、最终交付尚未整体接通；测试 Driver 是替身，v3 仍拒绝准入。尤其须补可信的每轮调用身份，覆盖 MCP conversation/market/NO_SCOPE 路径，不能把提示词允许工具当强制权限。下一段继续接线与完整生命周期测试。
