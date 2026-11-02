@@ -161,6 +161,42 @@
           "default": null,
           "title": "Expression"
         },
+        "expected_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Value"
+        },
+        "input_keys": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Input Keys",
+          "type": "array"
+        },
+        "non_empty_keys": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Non Empty Keys",
+          "type": "array"
+        },
+        "unique_by": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Unique By",
+          "type": "array"
+        },
         "message": {
           "default": "",
           "title": "Message",
