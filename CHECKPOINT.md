@@ -241,3 +241,9 @@ knowlab能力契约模型此前未重生成孵化请求schema，本次按当前�
 
 前端完整Vitest393 passed / 2 skipped（既有），typecheck与改动文件eslint通过。
 尚待Jenkins构建部署及浏览器现场验收。当前用户刷新已带expert参数页面可临时恢复。
+
+## 2026-11-03 专家选择入口、高亮与删除同批发布
+
+从#67独立补丁推进，包含前一个商城回跳选中修复；backend2595681、webf3ea512。两个入口改名并移除“自己指定”切换；AI查找与手选结果高亮，提交才启动分析。每位专家旁增加删除，服务端按用户持久保存列表偏好，不删pin/任务/报告，再请回恢复。数据库0036先于API启动执行；API和网页同批。
+
+Web395 passed/2既有skipped，typecheck/eslint/i18n通过；Next生产构建webpack通过（默认Turbopack因隔离工位node_modules跨目录软链拒绝，Jenkins正常checkout继续执行标准构建）。后端隔离DB56 passed，Ruff/Pyright通过。既有data-needs测试修正遗漏#67已有字段，不放宽生产规则。未执行付费模型测试或发布，生产浏览器验收交qwen/所有者。主开发分支撤回候选不在本补丁内。
