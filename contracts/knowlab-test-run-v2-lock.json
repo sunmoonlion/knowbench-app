@@ -1,0 +1,8 @@
+{
+  "provider": "knowlab-app",
+  "contract": "knowbot-test-run",
+  "major_version": 2,
+  "request_schema": "contracts/knowbot-test-run/v2/test-run-request.schema.json",
+  "sha256": "45284ea9327169828b0723b2a848497346cb5e3be16cb3f1e89609a70ddc14ec",
+  "response_contract": "knowbot-test-run/v1"
+}
