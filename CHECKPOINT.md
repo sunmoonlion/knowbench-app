@@ -249,3 +249,7 @@ knowlab能力契约模型此前未重生成孵化请求schema，本次按当前�
 Web395 passed/2既有skipped，typecheck/eslint/i18n通过；Next生产构建webpack通过（默认Turbopack因隔离工位node_modules跨目录软链拒绝，Jenkins正常checkout继续执行标准构建）。后端隔离DB56 passed，Ruff/Pyright通过。既有data-needs测试修正遗漏#67已有字段，不放宽生产规则。未执行付费模型测试或发布，生产浏览器验收交qwen/所有者。主开发分支撤回候选不在本补丁内。
 
 2026-11-04 最终文案按所有者明确改为“自己去knowmart请专家”和“ai去knowmart请回专家”。Web推进至9c44166，31项受影响页面回归通过；行为不变。
+
+## 2026-11-04 #68 AI入口反馈补丁
+
+父仓只推进web至20aeac7；backend仍25956816，admin及契约锁不变。缺少问题/项目/电脑时入口可点并解释、定位，缺项不发起查找；补齐仍需再次点击。仅重建web，无迁移/后端发布。35项定向组件通过、typecheck/eslint/i18n通过，Next生产webpack构建通过。完整Turbopack门由Jenkins正常checkout执行（隔离工位node_modules外链限制仍在）。不包含测试隔离与第二轨撤回候选。
