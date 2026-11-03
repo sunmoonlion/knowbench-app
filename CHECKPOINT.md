@@ -229,3 +229,11 @@ Qwen正在发布的fix/supply-confirmation-waiting及fix/markdown-delivery指针
 ## 2026-11-03 同步孵化请求提供方生成契约
 
 knowlab能力契约模型此前未重生成孵化请求schema，本次按当前模型补生成，更新knowlab-incubation-lock.json请求摘要为1a8723318e255021a7800cf3048f8e937c61e1efc316a0abe5026f6f34304f0b。运行后端/网页/admin不变，test_knowbot_incubation_lock.py 5 passed；并用当前运行器核Kimi扩展探针99标记全真。没有新付费测试或生产写入。
+
+## 2026-11-03 G4后续入口修复
+
+网页指针353a0d7：澄清结果可编辑完整问题、核对后显式重新查找；读取故障只重读原任务；
+匹配结果与返回提问页保留手选专家确切版本。后端da89249/admin不动，无迁移或新契约。
+前端396通过/2原有跳过、类型/定向lint/i18n/构建通过。没有新模型费用和线上操作。
+此父仓是后续开发增量；Qwen当前§19仍钉aa8a29d及web725610e，不改其发布候选。
+G4同任务Interaction澄清和跨轮费用汇总尚未闭环，详见网页CHECKPOINT。
