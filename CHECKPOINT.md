@@ -229,3 +229,15 @@ Qwen正在发布的fix/supply-confirmation-waiting及fix/markdown-delivery指针
 ## 2026-11-03 同步孵化请求提供方生成契约
 
 knowlab能力契约模型此前未重生成孵化请求schema，本次按当前模型补生成，更新knowlab-incubation-lock.json请求摘要为1a8723318e255021a7800cf3048f8e937c61e1efc316a0abe5026f6f34304f0b。运行后端/网页/admin不变，test_knowbot_incubation_lock.py 5 passed；并用当前运行器核Kimi扩展探针99标记全真。没有新付费测试或生产写入。
+
+## 2026-11-03 商城回跳没有选中专家修复
+
+独立修复分支 fix/market-arrival-selection 从已发布#67父仓aa8a29d、web725610e检出，
+仅推进web至6ee8187；后端及其余gitlink保持#67。未纳入已撤回第二轨候选。
+
+真实请求summon-return与pin均200；KnowbotArrival软导航补expert参数时HomeScreen
+未重新挂载，原useState初始化保留AI查找模式。现对新的expert参数同步手选状态，
+同参数保留用户后续切换、问题和项目。新增同组件rerender回归，不自动调用分析。
+
+前端完整Vitest393 passed / 2 skipped（既有），typecheck与改动文件eslint通过。
+尚待Jenkins构建部署及浏览器现场验收。当前用户刷新已带expert参数页面可临时恢复。
