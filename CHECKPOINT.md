@@ -249,3 +249,15 @@ TaskRequirements 进入已有规划器。未覆盖/未知/收费选择规则保�
 回归174 passed；ruff/pyright通过。web397 passed/2 skipped，类型、lint、
 i18n、生产构建通过。非真实模型匹配质量或演示验收。
 下一批继续独立方法定义/组合/执行策略解耦，再做语义数据绑定；不新建执行引擎。
+
+## 2026-11-03 原子方法来源进入原运行体系
+
+后端69e9f16：dynamic-methods/v3 支持 author-method/v3 新定义来源；独立方法摘要、
+输入必需性/字段、输出契约与专家 execution 策略均核对。旧来源仍禁止追加策略覆盖，
+旧 v1/v2 目录 schema 不变。新来源编译后继续用原 CapabilityMethodPlan/project_plan。
+provider v3 catalog schema、knowlab incubation 消费锁、author-method/v3 消费锁同步；
+本增量无迁移，不改运行门禁、用户预算或已接受任务。
+验证：目录/引用/规划/真实PG匹配执行等97 passed；新增provider锁与篡改负例7 passed；
+ruff/pyright通过；实际knowlab输出按有/无可选复核分别投影3步/2步。原匹配主线174项
+回归及web397 passed/2 skipped见上条。不是实际模型或金融业务通过。
+仍须语义数据绑定、组合/流程编辑与真实作者演示验收；不移动Qwen§19正在发布的候选。

@@ -398,42 +398,6 @@
       "title": "MethodInputSlot",
       "type": "object"
     },
-    "MethodReference": {
-      "additionalProperties": false,
-      "properties": {
-        "method_id": {
-          "format": "uuid",
-          "title": "Method Id",
-          "type": "string"
-        },
-        "version": {
-          "maximum": 999999,
-          "minimum": 1,
-          "title": "Version",
-          "type": "integer"
-        },
-        "digest": {
-          "pattern": "^sha256:[0-9a-f]{64}$",
-          "title": "Digest",
-          "type": "string"
-        },
-        "inputs": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "maxProperties": 30,
-          "title": "Inputs",
-          "type": "object"
-        }
-      },
-      "required": [
-        "method_id",
-        "version",
-        "digest"
-      ],
-      "title": "MethodReference",
-      "type": "object"
-    },
     "MethodSelection": {
       "additionalProperties": false,
       "properties": {
@@ -721,11 +685,60 @@
       "title": "SlottedMethodContract",
       "type": "object"
     },
+    "SlottedMethodReference": {
+      "additionalProperties": false,
+      "properties": {
+        "method_id": {
+          "format": "uuid",
+          "title": "Method Id",
+          "type": "string"
+        },
+        "version": {
+          "maximum": 999999,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Digest",
+          "type": "string"
+        },
+        "inputs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "maxProperties": 30,
+          "title": "Inputs",
+          "type": "object"
+        },
+        "execution": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Execution"
+        }
+      },
+      "required": [
+        "method_id",
+        "version",
+        "digest"
+      ],
+      "title": "SlottedMethodReference",
+      "type": "object"
+    },
     "SlottedMethodSource": {
       "additionalProperties": false,
       "properties": {
         "reference": {
-          "$ref": "#/$defs/MethodReference"
+          "$ref": "#/$defs/SlottedMethodReference"
         },
         "definition": {
           "additionalProperties": true,
