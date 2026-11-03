@@ -1,0 +1,969 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.sunmoonai.com/knowbench/dynamic-methods/v3/catalog.schema.json",
+  "$defs": {
+    "AskBefore": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "options": {
+          "default": [],
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "title": "Options",
+          "type": "array"
+        },
+        "allow_other": {
+          "default": true,
+          "title": "Allow Other",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "question"
+      ],
+      "title": "AskBefore",
+      "type": "object"
+    },
+    "CapabilityBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "required_units": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Required Units",
+          "type": "array"
+        },
+        "evidence_outputs": {
+          "items": {
+            "$ref": "#/$defs/CapabilityOutput"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Evidence Outputs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "required_units",
+        "evidence_outputs"
+      ],
+      "title": "CapabilityBinding",
+      "type": "object"
+    },
+    "CapabilityOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+          "title": "Method",
+          "type": "string"
+        },
+        "field": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "field"
+      ],
+      "title": "CapabilityOutput",
+      "type": "object"
+    },
+    "CapabilityPlanning": {
+      "additionalProperties": false,
+      "properties": {
+        "method_text": {
+          "maxLength": 20000,
+          "minLength": 1,
+          "title": "Method Text",
+          "type": "string"
+        },
+        "final_units": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Final Units",
+          "type": "array"
+        },
+        "max_steps": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Max Steps",
+          "type": "integer"
+        },
+        "max_replans": {
+          "maximum": 10,
+          "minimum": 0,
+          "title": "Max Replans",
+          "type": "integer"
+        },
+        "reserve": {
+          "pattern": "^[0-9]{1,4}(\\.[0-9]{1,4})?$",
+          "title": "Reserve",
+          "type": "string"
+        },
+        "input_max_chars": {
+          "maximum": 200000,
+          "minimum": 500,
+          "title": "Input Max Chars",
+          "type": "integer"
+        },
+        "capability_bindings": {
+          "maxProperties": 30,
+          "minProperties": 1,
+          "patternProperties": {
+            "^[A-Za-z][A-Za-z0-9_-]{0,47}$": {
+              "$ref": "#/$defs/CapabilityBinding"
+            }
+          },
+          "title": "Capability Bindings",
+          "type": "object"
+        }
+      },
+      "required": [
+        "method_text",
+        "final_units",
+        "max_steps",
+        "max_replans",
+        "reserve",
+        "input_max_chars",
+        "capability_bindings"
+      ],
+      "title": "CapabilityPlanning",
+      "type": "object"
+    },
+    "ConditionalAcceptanceRule": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "json_object",
+            "required_keys",
+            "non_empty",
+            "list_min",
+            "no_positioning_advice",
+            "max_chars",
+            "all_equal",
+            "list_empty",
+            "blank",
+            "computed",
+            "identity",
+            "sourced",
+            "quoted",
+            "each_has",
+            "covers"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "keys": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Keys",
+          "type": "array"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "min_items": {
+          "default": 1,
+          "title": "Min Items",
+          "type": "integer"
+        },
+        "max_chars": {
+          "default": 20000,
+          "title": "Max Chars",
+          "type": "integer"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "equals": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Equals"
+        },
+        "values": {
+          "default": [],
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "title": "Values",
+          "type": "array"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        },
+        "source_field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Field"
+        },
+        "also": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Also",
+          "type": "array"
+        },
+        "tolerance": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Tolerance",
+          "type": "number"
+        },
+        "expression": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expression"
+        },
+        "expected_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Value"
+        },
+        "input_keys": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Input Keys",
+          "type": "array"
+        },
+        "non_empty_keys": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Non Empty Keys",
+          "type": "array"
+        },
+        "unique_by": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Unique By",
+          "type": "array"
+        },
+        "message": {
+          "default": "",
+          "title": "Message",
+          "type": "string"
+        },
+        "label": {
+          "default": "",
+          "title": "Label",
+          "type": "string"
+        },
+        "when_input_present": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "When Input Present"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "ConditionalAcceptanceRule",
+      "type": "object"
+    },
+    "MethodInputSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "method_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+          "title": "Method Id",
+          "type": "string"
+        },
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "method_id",
+        "required"
+      ],
+      "title": "MethodInputSlot",
+      "type": "object"
+    },
+    "MethodReference": {
+      "additionalProperties": false,
+      "properties": {
+        "method_id": {
+          "format": "uuid",
+          "title": "Method Id",
+          "type": "string"
+        },
+        "version": {
+          "maximum": 999999,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "digest": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Digest",
+          "type": "string"
+        },
+        "inputs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "maxProperties": 30,
+          "title": "Inputs",
+          "type": "object"
+        }
+      },
+      "required": [
+        "method_id",
+        "version",
+        "digest"
+      ],
+      "title": "MethodReference",
+      "type": "object"
+    },
+    "MethodSelection": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_when": {
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Applies When",
+          "type": "string"
+        },
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
+        "max_calls": {
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Max Calls",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "applies_when",
+        "required",
+        "max_calls"
+      ],
+      "title": "MethodSelection",
+      "type": "object"
+    },
+    "PublicCapability": {
+      "additionalProperties": false,
+      "description": "Author-confirmed public claims, never private method definitions.",
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "statement": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        },
+        "conditions": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Conditions",
+          "type": "array"
+        },
+        "exclusions": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Exclusions",
+          "type": "array"
+        },
+        "delivers": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Delivers",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "conditions",
+        "exclusions",
+        "delivers"
+      ],
+      "title": "PublicCapability",
+      "type": "object"
+    },
+    "Scope": {
+      "additionalProperties": false,
+      "description": "这位专家接什么、不接什么。第一步先按它判问题是不是给这位专家的（受理关口，账 130）。\n\n不写就从六问的「解决什么」「不解决什么」里取，六问没写的再用名字与一句话介绍：分身的清单不用改也有这道关口。",
+      "properties": {
+        "does": {
+          "title": "Does",
+          "type": "string"
+        },
+        "does_not": {
+          "default": "",
+          "title": "Does Not",
+          "type": "string"
+        },
+        "elsewhere": {
+          "default": "",
+          "title": "Elsewhere",
+          "type": "string"
+        }
+      },
+      "required": [
+        "does"
+      ],
+      "title": "Scope",
+      "type": "object"
+    },
+    "SlottedMethodContract": {
+      "additionalProperties": false,
+      "description": "v3 input_refs are neutral slots; bindings belong to the expert version.",
+      "properties": {
+        "step_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+          "title": "Step Id",
+          "type": "string"
+        },
+        "step_version": {
+          "default": "1",
+          "title": "Step Version",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "summary": {
+          "default": "",
+          "title": "Summary",
+          "type": "string"
+        },
+        "why": {
+          "default": "",
+          "title": "Why",
+          "type": "string"
+        },
+        "input_refs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Input Refs",
+          "type": "array"
+        },
+        "method_text": {
+          "title": "Method Text",
+          "type": "string"
+        },
+        "tools": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Tools",
+          "type": "array"
+        },
+        "output_artifact": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
+          "title": "Output Artifact",
+          "type": "string"
+        },
+        "output_schema": {
+          "additionalProperties": true,
+          "title": "Output Schema",
+          "type": "object"
+        },
+        "acceptance": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ConditionalAcceptanceRule"
+          },
+          "title": "Acceptance",
+          "type": "array"
+        },
+        "on_reject": {
+          "default": "rework",
+          "enum": [
+            "rework",
+            "back",
+            "human"
+          ],
+          "title": "On Reject",
+          "type": "string"
+        },
+        "back_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Back To"
+        },
+        "max_reworks": {
+          "default": 1,
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Max Reworks",
+          "type": "integer"
+        },
+        "max_backs": {
+          "default": 1,
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Max Backs",
+          "type": "integer"
+        },
+        "mode": {
+          "default": "single",
+          "enum": [
+            "single",
+            "compete"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "reserve": {
+          "default": "0.05",
+          "title": "Reserve",
+          "type": "string"
+        },
+        "input_max_chars": {
+          "default": 8000,
+          "maximum": 200000,
+          "minimum": 500,
+          "title": "Input Max Chars",
+          "type": "integer"
+        },
+        "tool_policy": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ToolPolicyOverride"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ask_before": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AskBefore"
+          },
+          "title": "Ask Before",
+          "type": "array"
+        },
+        "output_file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output File"
+        },
+        "input_slots": {
+          "maxProperties": 30,
+          "patternProperties": {
+            "^[A-Za-z][A-Za-z0-9_-]{0,47}$": {
+              "$ref": "#/$defs/MethodInputSlot"
+            }
+          },
+          "title": "Input Slots",
+          "type": "object"
+        }
+      },
+      "required": [
+        "step_id",
+        "title",
+        "method_text",
+        "output_artifact",
+        "input_slots"
+      ],
+      "title": "SlottedMethodContract",
+      "type": "object"
+    },
+    "SlottedMethodSource": {
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "$ref": "#/$defs/MethodReference"
+        },
+        "definition": {
+          "additionalProperties": true,
+          "title": "Definition",
+          "type": "object"
+        }
+      },
+      "required": [
+        "reference",
+        "definition"
+      ],
+      "title": "SlottedMethodSource",
+      "type": "object"
+    },
+    "SlottedMethodUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "selection": {
+          "$ref": "#/$defs/MethodSelection"
+        },
+        "contract": {
+          "$ref": "#/$defs/SlottedMethodContract"
+        }
+      },
+      "required": [
+        "selection",
+        "contract"
+      ],
+      "title": "SlottedMethodUnit",
+      "type": "object"
+    },
+    "ToolPolicyOverride": {
+      "additionalProperties": false,
+      "description": "步骤级覆盖。每一项都可以不给；给了只能更严，command_allow 只能加。",
+      "properties": {
+        "file_change_in_project": {
+          "anyOf": [
+            {
+              "enum": [
+                "allow",
+                "ask",
+                "deny"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "File Change In Project"
+        },
+        "file_change_outside": {
+          "anyOf": [
+            {
+              "enum": [
+                "allow",
+                "ask",
+                "deny"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "File Change Outside"
+        },
+        "command": {
+          "anyOf": [
+            {
+              "enum": [
+                "allow",
+                "ask",
+                "deny"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Command"
+        },
+        "command_allow": {
+          "default": [],
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Command Allow",
+          "type": "array"
+        },
+        "network": {
+          "anyOf": [
+            {
+              "enum": [
+                "allow",
+                "ask",
+                "deny"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Network"
+        },
+        "questions": {
+          "anyOf": [
+            {
+              "enum": [
+                "allow",
+                "deny"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Questions"
+        },
+        "max_questions": {
+          "anyOf": [
+            {
+              "maximum": 10,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Questions"
+        }
+      },
+      "title": "ToolPolicyOverride",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Author-bound capabilities and optional inputs; legacy schemas stay strict.",
+  "properties": {
+    "runtime_contract": {
+      "const": "knowbench/dynamic-methods/v3",
+      "title": "Runtime Contract",
+      "type": "string"
+    },
+    "pack_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Pack Id",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[1-9][0-9]{0,5}$",
+      "title": "Version",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "name": {
+      "default": "",
+      "maxLength": 80,
+      "title": "Name",
+      "type": "string"
+    },
+    "tagline": {
+      "default": "",
+      "maxLength": 200,
+      "title": "Tagline",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/Scope"
+    },
+    "planning": {
+      "$ref": "#/$defs/CapabilityPlanning"
+    },
+    "method_units": {
+      "items": {
+        "$ref": "#/$defs/SlottedMethodUnit"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Method Units",
+      "type": "array"
+    },
+    "public_capabilities": {
+      "items": {
+        "$ref": "#/$defs/PublicCapability"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Public Capabilities",
+      "type": "array"
+    },
+    "method_compiler": {
+      "const": "knowlab/workdraft-compiler/v2",
+      "title": "Method Compiler",
+      "type": "string"
+    },
+    "method_sources": {
+      "maxProperties": 30,
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,47}$": {
+          "$ref": "#/$defs/SlottedMethodSource"
+        }
+      },
+      "title": "Method Sources",
+      "type": "object"
+    }
+  },
+  "required": [
+    "runtime_contract",
+    "pack_id",
+    "version",
+    "title",
+    "scope",
+    "planning",
+    "method_units",
+    "public_capabilities",
+    "method_compiler",
+    "method_sources"
+  ],
+  "title": "CapabilityMethodCatalog",
+  "type": "object"
+}
