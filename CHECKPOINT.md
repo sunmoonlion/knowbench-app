@@ -265,3 +265,7 @@ Web395 passed/2既有skipped，typecheck/eslint/i18n通过；Next生产构建web
 父仓只推进web至20aeac7；backend仍25956816，admin及契约锁不变。缺少问题/项目/电脑时入口可点并解释、定位，缺项不发起查找；补齐仍需再次点击。仅重建web，无迁移/后端发布。35项定向组件通过、typecheck/eslint/i18n通过，Next生产webpack构建通过。完整Turbopack门由Jenkins正常checkout执行（隔离工位node_modules外链限制仍在）。不包含测试隔离与第二轨撤回候选。
 
 同日增量web推进fefa873：查找RECEIVED/QUEUED不再显示模型正在匹配，等待/校验/终态分别提示并可查看项目任务。状态矩阵及请回组件46通过，typecheck、ESLint、i18n、生产webpack构建通过；后端与迁移仍保持#68。需后续发布才生效，未动线上排队与前序财务任务。
+
+## 2026-11-04 #71后计算参数兼容增量
+
+同一候选仅推进backend至f2404150af37935c9a368405ac939ef7c0ff4bb1，保留匹配结果验收/空参止损修复。compute由required-only oneOf/not改为自包含anyOf分支，单笔与批量均在真实kimi-k3对照、Codex0.155.1离线转发及真实计算服务内存回放通过；168项后端回归通过。虚拟数据探针保守估算0.492116元（用户授权上限2元），无财务任务重启。web/admin/契约锁/迁移保持#71。统一交接仍为sunmoonun的2026-11-04-AI选专家结果验收修复交接.md；发布交Qwen。后台schema更新后旧线程缓存需无活动turn再刷新，不能只验API tools/list。
