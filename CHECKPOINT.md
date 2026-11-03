@@ -253,3 +253,5 @@ Web395 passed/2既有skipped，typecheck/eslint/i18n通过；Next生产构建web
 ## 2026-11-04 #68 AI入口反馈补丁
 
 父仓只推进web至20aeac7；backend仍25956816，admin及契约锁不变。缺少问题/项目/电脑时入口可点并解释、定位，缺项不发起查找；补齐仍需再次点击。仅重建web，无迁移/后端发布。35项定向组件通过、typecheck/eslint/i18n通过，Next生产webpack构建通过。完整Turbopack门由Jenkins正常checkout执行（隔离工位node_modules外链限制仍在）。不包含测试隔离与第二轨撤回候选。
+
+同日增量web推进fefa873：查找RECEIVED/QUEUED不再显示模型正在匹配，等待/校验/终态分别提示并可查看项目任务。状态矩阵及请回组件46通过，typecheck、ESLint、i18n、生产webpack构建通过；后端与迁移仍保持#68。需后续发布才生效，未动线上排队与前序财务任务。
