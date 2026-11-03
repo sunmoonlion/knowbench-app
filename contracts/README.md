@@ -126,3 +126,20 @@ version. knowbase keys preferences by user × this consumer × description.
 目录只存作者冻结的方法，不能存任务 workflow；实例和成果版本的绑定由后续计划模块承担。当前 `catalog_from_manifest` 只做校验，`pack_from_manifest` 明确拒绝 v3；固定 v2 不变。孵化 v1 消费锁同步新增可选工作稿字段及 planning/selection 建议路径，工作稿原样传递，规划建议仍须由作者接受。
 
 WP-10 方法引用（开发契约，未发布）：新增 `dynamic-methods/v2/catalog.schema.json`；v1 schema 字节不变。v2 的 `method_sources` 含精确方法引用与作者定义证据，`knowlab-author-method-lock.json` 钉定义真源。运行方校验摘要、绑定、版本与选择界限，不维护另一份作者编辑模型或编译器。任务计划保留冻结来源，执行入口仍拒绝 v3。
+
+## Expert selection v4 (2026-11-04, development only)
+
+The current web client explicitly requests `knowbench/expert-match/v4` on the
+existing find-expert route. The provider is backend `domain/workbench/expert_match.py`;
+`packs.find_pack` supplies its output schema, and the web Zod contract consumes it.
+V4 picks contain `fit`, real public `declarations`, and `limitations`. They carry no
+method proposals, coverage table, or joint solution proof. Existing v1-v3 tasks are
+parsed under their original versions. Backend and web must deploy together.
+
+Server task requirements retain the original question and mark `selection_basis`:
+`declaration` for v4, `manual` for direct selection and new author tests; the old
+coverage basis remains the omitted default. Manual requests have no match task or
+artifact ID. Capability mappings describe the author's allowed range, not proven
+coverage. Existing runner input/tool/data/approval/result checks still apply.
+Incubation remains explicit and uses the locked runtime-incubation/v2 provider;
+v4 sends only quoted user requirements, empty proposals and empty coverage gaps.
