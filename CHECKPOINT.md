@@ -247,3 +247,5 @@ knowlab能力契约模型此前未重生成孵化请求schema，本次按当前�
 从#67独立补丁推进，包含前一个商城回跳选中修复；backend2595681、webf3ea512。两个入口改名并移除“自己指定”切换；AI查找与手选结果高亮，提交才启动分析。每位专家旁增加删除，服务端按用户持久保存列表偏好，不删pin/任务/报告，再请回恢复。数据库0036先于API启动执行；API和网页同批。
 
 Web395 passed/2既有skipped，typecheck/eslint/i18n通过；Next生产构建webpack通过（默认Turbopack因隔离工位node_modules跨目录软链拒绝，Jenkins正常checkout继续执行标准构建）。后端隔离DB56 passed，Ruff/Pyright通过。既有data-needs测试修正遗漏#67已有字段，不放宽生产规则。未执行付费模型测试或发布，生产浏览器验收交qwen/所有者。主开发分支撤回候选不在本补丁内。
+
+2026-11-04 最终文案按所有者明确改为“自己去knowmart请专家”和“ai去knowmart请回专家”。Web推进至9c44166，31项受影响页面回归通过；行为不变。
