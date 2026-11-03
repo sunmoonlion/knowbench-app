@@ -1,0 +1,6 @@
+{
+  "provider": "knowlab-app",
+  "contract": "knowlab/runtime-incubation/v2",
+  "schema": "contracts/runtime-incubation/v2/request.schema.json",
+  "sha256": "ccad6b45409c9129d30fcc52628c2c3d9dbc9961c191aa8a5a5db4c7f3ae7da5"
+}
