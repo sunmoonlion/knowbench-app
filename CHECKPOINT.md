@@ -269,3 +269,7 @@ Web395 passed/2既有skipped，typecheck/eslint/i18n通过；Next生产构建web
 ## 2026-11-04 #71后计算参数兼容增量
 
 同一候选仅推进backend至f2404150af37935c9a368405ac939ef7c0ff4bb1，保留匹配结果验收/空参止损修复。compute由required-only oneOf/not改为自包含anyOf分支，单笔与批量均在真实kimi-k3对照、Codex0.155.1离线转发及真实计算服务内存回放通过；168项后端回归通过。虚拟数据探针保守估算0.492116元（用户授权上限2元），无财务任务重启。web/admin/契约锁/迁移保持#71。统一交接仍为sunmoonun的2026-11-04-AI选专家结果验收修复交接.md；发布交Qwen。后台schema更新后旧线程缓存需无活动turn再刷新，不能只验API tools/list。
+
+## 2026-11-04 #72候选后范围声明误判增量
+
+仅推进backend至a9e1618（完整SHA见gitlink）。明确否定声明允许起于逗号后，实际建议/价格及跨字段内容仍拒绝；148项回归、Ruff/Pyright通过。web/admin/迁移保持，专家无需换版。与已钉#72分开发布，不能改在建版本或中断活动委托；详见范围说明否定措辞误判修复交接。
