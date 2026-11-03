@@ -1,0 +1,7 @@
+{
+  "provider": "knowmart-app",
+  "contract": "expert-directory",
+  "major_version": 2,
+  "schema": "contracts/expert-directory/v2/catalog.schema.json",
+  "sha256": "3d4cab28901662253c18b93b8622ff775ae89e0daef516b404afac14464f6333"
+}
