@@ -174,3 +174,8 @@ Qwen正在发布的fix/supply-confirmation-waiting及fix/markdown-delivery指针
 5个故障先复现；修复后规则101、隔离DB43通过，ruff/pyright通过。
 无迁移/契约/配置，前端/admin不变；开发父仓推进，Qwen候选9364866保持原样。
 旧动态冲突计划复核时会拒绝继续，不能改历史计划绕过；需作者更名并出新版本。
+
+
+## 2026-11-03 指标验收十进制精度
+
+推进后端204f3b1：computed/sourced数值及输入字段在JSON解析丢精度时保留十进制字符串，计算编号、表达式、容差和引文检查不放宽。真实测试6c1第二轮22项原文值只读回放通过，第一轮22项截短值仍拒绝；211项定向回归及ruff/pyright通过。独立发布候选从线上后端f8cd18b检出fix/acceptance-decimal-precision，不包含本开发分支其余改动。预测/报告及专家第2版仍未验收；不自动重跑、不改线上历史。
