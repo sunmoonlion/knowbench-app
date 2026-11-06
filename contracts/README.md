@@ -143,3 +143,24 @@ artifact ID. Capability mappings describe the author's allowed range, not proven
 coverage. Existing runner input/tool/data/approval/result checks still apply.
 Incubation remains explicit and uses the locked runtime-incubation/v2 provider;
 v4 sends only quoted user requirements, empty proposals and empty coverage gaps.
+
+## 各版在用情况与退役条件（SDD 0052 第三节，2026-11-06 第一次整理）
+
+只读整理，没有删任何一版。**退役条件**统一两句：① 本仓代码不再读写这一版；② 线上没有还钉着这一版的进行中数据（委托、测试、确认快照）。**退役顺序**：使用方先删锁和读写代码并发版，提供方最后删 schema 与入口。提供方出新版时，在同一笔提交里把旧版这一行的退役条件写上。
+
+| 契约与版本 | 提供方 | 本仓谁在用 | 现在谁还会出这一版 | 退役条件（第 ② 句查哪里） | 状态 |
+| --- | --- | --- | --- | --- | --- |
+| `knowbot-manifest/v2` | knowmart | `domain/workbench/knowbots.py` `pack_from_manifest` | 固定专家（财务分析与预测等） | 所有者定固定专家全部改成别的清单形态之前不退；查 `workbench_tasks.pack_snapshot` 不带 `runtime_contract` 的进行中委托 | 在用（固定专家保留，11-03） |
+| `knowbot-manifest/v3` | knowmart | `knowbots.py` `catalog_from_manifest` | 动态专家 | 现行版 | 在用 |
+| `dynamic-methods/v1` | 本仓（knowlab 持锁） | `domain/workbench/method_catalog.py` | 工作稿只有规划说明、没引方法库也没写能力声明 | 新的动态专家一律要求写能力声明（v3）之后；查 `pack_snapshot->>'runtime_contract' = 'knowbench/dynamic-methods/v1'` 的进行中委托与 knowmart 在售版本 | 在用，**可退候选**（要所有者定是否强制 v3） |
+| `dynamic-methods/v2` | 本仓 | 同上 | 工作稿引了方法库的方法、没写能力声明 | 同上，`…/v2` | 在用，**可退候选**（同上） |
+| `dynamic-methods/v3` | 本仓 | 同上 | 写了能力声明的动态专家 | 现行版 | 在用 |
+| `author-method/v1`（`method-definition/v1`） | knowlab | `domain/workbench/method_catalog.py` 读冻结的方法来源 | 方法库里没有可选输入的方法 | 冻结在已发布专家里的引用都换成新版之后；查 knowmart 在售版本的 `method_sources` | 在用 |
+| `author-method/v2`（`method-definition/v2`） | knowlab | 同上 | 方法库里有可选输入的方法 | 同上 | 在用 |
+| `author-method/v3`（`method-definition/v3`） | knowlab | 同上 | 原子方法 | 现行版 | 在用 |
+| `knowbot-test-run/v1` | knowlab | `application/workbench/test_runs.py` | 固定专家与 dynamic-methods v1、v2 的测试 | 固定专家测试取值也按回执走（SDD 0050 第三节 #6）、且 v1/v2 动态专家退役之后；查 `workbench_test_runs` 里 `request->>'contract'` 为 v1 的进行中测试 | 在用 |
+| `knowbot-test-run/v2` | knowlab | 同上 | dynamic-methods v3 的测试 | 现行版 | 在用 |
+| `knowbot-incubation/v1`、`runtime-incubation/v2`、`knowbot-test-execution/v1` | knowlab | 孵化运行方、测试执行 | 现行 | 现行版 | 在用 |
+| `expert-directory/v2` | knowmart | `domain/workbench/expert_match.py` | 现行 | 现行版；锁测试含逐字段比对 | 在用 |
+| `data-request/v1`、`retrieval`（knowbase） | knowbase | 第 0 步数据、检索 | 现行 | 现行版 | 在用 |
+| `knowfeed-supply-prematch/v1`、`knowfeed-supply-status/v1` | knowfeed | 确认前预切合、需求状态接收 | 现行 | prematch 随 SDD 0051 出 v2 时写 v1 的退役条件 | 在用 |
