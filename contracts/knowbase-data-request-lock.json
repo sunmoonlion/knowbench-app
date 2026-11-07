@@ -3,5 +3,5 @@
   "contract": "data-request",
   "major_version": 1,
   "schema": "contracts/data-request/v1/data-request.schema.json",
-  "sha256": "0915d863e5fa6045359fe80fd6898d01db1390f7db8d5db9e8954cfb357104a2"
+  "sha256": "787d87506a473681da47ec48e8e38f1f25cd9b4dc220df924809f13636bd7281"
 }
