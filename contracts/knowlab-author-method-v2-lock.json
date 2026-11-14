@@ -3,5 +3,5 @@
   "contract": "author-method",
   "major_version": 2,
   "schema": "contracts/author-method/v2/definition.schema.json",
-  "sha256": "e35a11b509bb6399df04926db68db947e3ed0a9df14ad602f1c3fba4294e2995"
+  "sha256": "801a5340b5a1c3d19154c05073bacb59efc9ecb0db54bdb6bbd0265d7129fd12"
 }
