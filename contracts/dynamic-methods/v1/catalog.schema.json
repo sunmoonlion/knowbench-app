@@ -214,6 +214,74 @@
       "title": "AcceptanceRule",
       "type": "object"
     },
+    "AccessRequirement": {
+      "additionalProperties": false,
+      "description": "Business permission, independent of installation IDs and tool names.\n\nFirst supported scope: connector operations with exact resource sets and\ntop-level outbound argument fields. Unsupported expressions are rejected.\nThis declaration is a ceiling, not authorization by the account owner.",
+      "properties": {
+        "requirement_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "capability_ref": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Capability Ref",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "operations": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Operations",
+          "type": "array"
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/ResourceScope"
+          },
+          "maxItems": 30,
+          "title": "Resources",
+          "type": "array"
+        },
+        "data_transfer": {
+          "$ref": "#/$defs/DataTransfer"
+        },
+        "required_when": {
+          "const": "always",
+          "default": "always",
+          "title": "Required When",
+          "type": "string"
+        },
+        "on_unavailable": {
+          "const": "pause",
+          "default": "pause",
+          "title": "On Unavailable",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "capability_ref",
+        "version",
+        "operations",
+        "resources",
+        "data_transfer"
+      ],
+      "title": "AccessRequirement",
+      "type": "object"
+    },
     "AskBefore": {
       "additionalProperties": false,
       "properties": {
@@ -249,6 +317,40 @@
       "title": "AskBefore",
       "type": "object"
     },
+    "DataTransfer": {
+      "additionalProperties": false,
+      "properties": {
+        "destination": {
+          "maxLength": 1000,
+          "minLength": 8,
+          "title": "Destination",
+          "type": "string"
+        },
+        "argument_fields": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Argument Fields",
+          "type": "array"
+        },
+        "purpose": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Purpose",
+          "type": "string"
+        }
+      },
+      "required": [
+        "destination",
+        "argument_fields",
+        "purpose"
+      ],
+      "title": "DataTransfer",
+      "type": "object"
+    },
     "McpRequirement": {
       "additionalProperties": false,
       "properties": {
@@ -278,7 +380,7 @@
         "tools": {
           "default": [],
           "items": {
-            "$ref": "#/$defs/McpRequirement"
+            "$ref": "#/$defs/MethodToolBinding"
           },
           "maxItems": 30,
           "title": "Tools",
@@ -301,6 +403,26 @@
       "additionalProperties": false,
       "description": "Same execution contract, with bounded counts for repeatable catalog methods.",
       "properties": {
+        "access_requirements": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AccessRequirement"
+          },
+          "maxItems": 30,
+          "title": "Access Requirements",
+          "type": "array"
+        },
+        "managed_capabilities": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MethodCapabilities"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "step_id": {
           "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,47}$",
           "title": "Step Id",
@@ -337,17 +459,6 @@
         "method_text": {
           "title": "Method Text",
           "type": "string"
-        },
-        "managed_capabilities": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/MethodCapabilities"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
         },
         "tools": {
           "default": [],
@@ -502,6 +613,36 @@
       "title": "MethodSelection",
       "type": "object"
     },
+    "MethodToolBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "maxLength": 1000,
+          "minLength": 8,
+          "title": "Url",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "requirement_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Requirement Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "name",
+        "requirement_id"
+      ],
+      "title": "MethodToolBinding",
+      "type": "object"
+    },
     "MethodUnit": {
       "additionalProperties": false,
       "properties": {
@@ -570,6 +711,40 @@
         "input_max_chars"
       ],
       "title": "PlanningContract",
+      "type": "object"
+    },
+    "ResourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "resource_kind": {
+          "const": "connector",
+          "default": "connector",
+          "title": "Resource Kind",
+          "type": "string"
+        },
+        "resource_role": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Resource Role",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 1000,
+          "minItems": 1,
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "resource_role",
+        "values"
+      ],
+      "title": "ResourceScope",
       "type": "object"
     },
     "Scope": {
