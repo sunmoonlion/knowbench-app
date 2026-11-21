@@ -5,7 +5,7 @@
   "schemas": {
     "incubation-request.schema.json": {
       "path": "contracts/knowbot-incubation/v1/incubation-request.schema.json",
-      "sha256": "e2b615690fe06496688ebd53d672ba2515f8f3385e677632fb8eaf2498beb66d"
+      "sha256": "75dd403543818a336f0a7ca0c7ff5799426dbb0b9628b4eb761280c29ada7584"
     },
     "incubation-result.schema.json": {
       "path": "contracts/knowbot-incubation/v1/incubation-result.schema.json",
