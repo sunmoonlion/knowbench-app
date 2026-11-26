@@ -5,11 +5,11 @@
   "schemas": {
     "incubation-request.schema.json": {
       "path": "contracts/knowbot-incubation/v1/incubation-request.schema.json",
-      "sha256": "3424e5ded9535f181b753912dbba442b515fa408052fd32d73d1e554d7c8cea6"
+      "sha256": "4529d3861d693a2b5c8db0aa11a05c986540c8d67e92e8d5e372fb9c1d82930f"
     },
     "incubation-result.schema.json": {
       "path": "contracts/knowbot-incubation/v1/incubation-result.schema.json",
-      "sha256": "86041c2f4fe2ad88442bdb764b4abe163dee5d94758d125788adbb4e99e5428e"
+      "sha256": "1f738cbd3968ca1f3823c868b45f41f3e39e386d6ab4c8c9603773da33ef474d"
     }
   }
 }
