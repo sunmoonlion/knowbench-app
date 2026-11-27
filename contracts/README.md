@@ -130,22 +130,9 @@ version. knowbase keys preferences by user × this consumer × description.
 
 WP-10 方法引用（开发契约，未发布）：新增 `dynamic-methods/v2/catalog.schema.json`；v1 schema 字节不变。v2 的 `method_sources` 含精确方法引用与作者定义证据，`knowlab-author-method-lock.json` 钉定义真源。运行方校验摘要、绑定、版本与选择界限，不维护另一份作者编辑模型或编译器。任务计划保留冻结来源，执行入口仍拒绝 v3。
 
-## Expert selection v4 (2026-11-04, development only)
+## 专家匹配与工坊交接
 
-The current web client explicitly requests `knowbench/expert-match/v4` on the
-existing find-expert route. The provider is backend `domain/workbench/expert_match.py`;
-`packs.find_pack` supplies its output schema, and the web Zod contract consumes it.
-V4 picks contain `fit`, real public `declarations`, and `limitations`. They carry no
-method proposals, coverage table, or joint solution proof. Existing v1-v3 tasks are
-parsed under their original versions. Backend and web must deploy together.
-
-Server task requirements retain the original question and mark `selection_basis`:
-`declaration` for v4, `manual` for direct selection and new author tests; the old
-coverage basis remains the omitted default. Manual requests have no match task or
-artifact ID. Capability mappings describe the author's allowed range, not proven
-coverage. Existing runner input/tool/data/approval/result checks still apply.
-Incubation remains explicit and uses the locked runtime-incubation/v2 provider;
-v4 sends only quoted user requirements, empty proposals and empty coverage gaps.
+工作台通过 FIND_EXPERT 第五版为用户匹配正式方法。用户确认需要送回工坊的需求后，KnowBench 按 `knowlab/formal-handoff/v2` 提交问题、缺口和已确认的版本引用。新建方法和作者修订返回工坊方法编号，委托人提交反馈后收到交接回执。
 
 ## 各版在用情况与退役条件（SDD 0052 第三节，2026-11-06 第一次整理）
 
@@ -163,7 +150,7 @@ v4 sends only quoted user requirements, empty proposals and empty coverage gaps.
 | `author-method/v3`（`method-definition/v3`） | knowlab | 同上 | 原子方法 | 现行版 | 在用 |
 | `knowbot-test-run/v1` | knowlab | `application/workbench/test_runs.py` | 固定专家与 dynamic-methods v1、v2 的测试 | 固定专家测试取值也按回执走（SDD 0050 第三节 #6）、且 v1/v2 动态专家退役之后；查 `workbench_test_runs` 里 `request->>'contract'` 为 v1 的进行中测试 | 在用 |
 | `knowbot-test-run/v2` | knowlab | 同上 | dynamic-methods v3 的测试 | 现行版 | 在用 |
-| `knowbot-incubation/v1`、`runtime-incubation/v2`、`knowbot-test-execution/v1` | knowlab | 孵化运行方、测试执行 | 现行 | 现行版 | 在用 |
+| `knowbot-incubation/v1`、`formal-handoff/v2`、`knowbot-test-execution/v1` | knowlab | 孵化运行方、测试执行 | 现行 | 现行版 | 在用 |
 | `expert-directory/v2` | knowmart | `domain/workbench/expert_match.py` | 现行 | 现行版；锁测试含逐字段比对 | 在用 |
 | `data-request/v1`、`retrieval`（knowbase） | knowbase | 第 0 步数据、检索 | 现行 | 现行版 | 在用 |
 | `knowfeed-supply-prematch/v1`、`knowfeed-supply-status/v1` | knowfeed | 确认前预切合、需求状态接收 | 现行 | prematch 随 SDD 0051 出 v2 时写 v1 的退役条件 | 在用 |

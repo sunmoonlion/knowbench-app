@@ -1,0 +1,6 @@
+{
+  "provider": "knowlab-app",
+  "contract": "knowlab/formal-handoff/v2",
+  "schema": "contracts/formal-handoff/v2/request.schema.json",
+  "sha256": "8138c62cdc76a047afa32bf5cfbf2bfcd79538ee89fb53cedf2823149bb8ff7c"
+}
