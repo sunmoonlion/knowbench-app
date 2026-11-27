@@ -259,16 +259,34 @@
           "$ref": "#/$defs/DataTransfer"
         },
         "required_when": {
-          "const": "always",
           "default": "always",
+          "enum": [
+            "always",
+            "when_selected"
+          ],
           "title": "Required When",
           "type": "string"
         },
         "on_unavailable": {
-          "const": "pause",
           "default": "pause",
+          "enum": [
+            "pause",
+            "fail",
+            "skip_optional"
+          ],
           "title": "On Unavailable",
           "type": "string"
+        },
+        "origin_steps": {
+          "default": [],
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Origin Steps",
+          "type": "array"
         }
       },
       "required": [
