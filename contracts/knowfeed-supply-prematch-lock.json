@@ -7,7 +7,7 @@
   "schemas": {
     "prematch-request.schema.json": {
       "path": "contracts/supply-prematch/v1/prematch-request.schema.json",
-      "sha256": "6e77439632d126db61208d7ce050cc335eedd7ec912fb3bd2e7e66916d36c647"
+      "sha256": "f2b951f1569ee3c604c8498b6052539f64b9644501df2637d4814fa97be71c8f"
     },
     "prematch-response.schema.json": {
       "path": "contracts/supply-prematch/v1/prematch-response.schema.json",
