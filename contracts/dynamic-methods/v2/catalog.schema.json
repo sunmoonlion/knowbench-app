@@ -8,6 +8,7 @@
       "properties": {
         "kind": {
           "enum": [
+            "assertion",
             "json_object",
             "required_keys",
             "non_empty",
